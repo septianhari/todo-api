@@ -2,9 +2,7 @@ package docs
 
 import (
 	"github.com/gin-gonic/gin"
-	_ "github.com/septianhari/todo-api/docs"
-	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
+	_ "github.com/septianharitodo-api/docs"
 )
 
 // @title Todo API

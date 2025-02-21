@@ -5,6 +5,7 @@ import (
 	"github.com/septianhari/todo-api/controllers"
 	_ "github.com/septianhari/todo-api/docs"
 	"github.com/septianhari/todo-api/models"
+	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -25,7 +26,6 @@ func main() {
 	// Initialize Gin
 	r := gin.Default()
 
-	// Initialize Swagger
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// Define routes
