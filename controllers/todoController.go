@@ -10,7 +10,6 @@ import (
 
 var DB *gorm.DB
 
-// CreateTodo handles the creation of a new todo
 func CreateTodo(c *gin.Context) {
 	var todo models.Todo
 	if err := c.ShouldBindJSON(&todo); err != nil {
@@ -26,7 +25,6 @@ func CreateTodo(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Todo created", "data": todo})
 }
 
-// GetTodos retrieves all todos
 func GetTodos(c *gin.Context) {
 	var todos []models.Todo
 	if err := DB.Find(&todos).Error; err != nil {
@@ -37,7 +35,6 @@ func GetTodos(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": todos})
 }
 
-// GetTodo retrieves a single todo by ID
 func GetTodoByID(c *gin.Context) {
 	id := c.Param("id")
 	var todo models.Todo
@@ -49,7 +46,6 @@ func GetTodoByID(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": todo})
 }
 
-// UpdateTodo updates a todo by ID
 func UpdateTodo(c *gin.Context) {
 	id := c.Param("id")
 	var todo models.Todo
@@ -71,7 +67,6 @@ func UpdateTodo(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Todo updated", "data": todo})
 }
 
-// DeleteTodo deletes a todo by ID
 func DeleteTodo(c *gin.Context) {
 	id := c.Param("id")
 	if err := DB.Delete(&models.Todo{}, id).Error; err != nil {
