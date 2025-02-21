@@ -15,7 +15,7 @@ var DB *gorm.DB
 var err error
 
 func main() {
-	// Initialize database
+
 	DB, err = gorm.Open(sqlite.Open("todo.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect to the database")
@@ -23,12 +23,10 @@ func main() {
 
 	DB.AutoMigrate(&models.Todo{})
 
-	// Initialize Gin
 	r := gin.Default()
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	// Define routes
 	api := r.Group("/api/v1")
 	{
 		api.POST("/todos", controllers.CreateTodo)
@@ -38,6 +36,5 @@ func main() {
 		api.DELETE("/todos/:id", controllers.DeleteTodo)
 	}
 
-	// Run the server
 	r.Run(":8080")
 }
